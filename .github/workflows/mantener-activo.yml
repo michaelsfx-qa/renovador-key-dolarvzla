@@ -1,0 +1,17 @@
+name: Mantener repositorio activo
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+
+jobs:
+  mantener:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Commit vacío
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git commit --allow-empty -m "mantener repo activo"
+          git push
